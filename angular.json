@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cowboy-somm-frontend": {
+    "tumdum": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -81,10 +81,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "cowboy-somm-frontend:build:production"
+              "buildTarget": "tumdum:build:production"
             },
             "development": {
-              "buildTarget": "cowboy-somm-frontend:build:development"
+              "buildTarget": "tumdum:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -92,7 +92,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "cowboy-somm-frontend:build"
+            "buildTarget": "tumdum:build"
           }
         },
         "test": {

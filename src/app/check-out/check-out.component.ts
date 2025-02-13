@@ -17,10 +17,10 @@ export class CheckOutComponent implements OnInit {
   resId: any;
   resDetails: any;
   checkedAgree: boolean = false;
-  upiId: string = "sarthakpati.pati-1@okicici";
-  amount: string = "500";
+  upiId: string = "";
+  amount: string = "";
   transactionNote: string = "Payment for Order";
-  orderId: string = "ORDER98765";
+  orderId: string = "";
   totalQty: any = 0;
   isOpen = false;
   orderStatus: boolean = false;
@@ -115,7 +115,7 @@ export class CheckOutComponent implements OnInit {
       order_id: "",
       order_status: "",
       res_id: "",
-      paymentStatus: "",
+      paymentStatus: "Pending",
       created_time: new Date().toISOString(),
     };
     console.log("fd", fd);
@@ -135,6 +135,8 @@ export class CheckOutComponent implements OnInit {
     this.openModal();
     const d = new Date();
     const orderId = d.getTime();
+    this.orderId = orderId.toString();
+    this.amount = this.totalPrice.toString();
     const batch = this.firestore.firestore.batch();
     this.getOrderStatus(orderId);
 
@@ -180,7 +182,7 @@ export class CheckOutComponent implements OnInit {
       (snapshot: any) => {
         this.orderDetails = snapshot.data();
         console.log("orderDetails", this.orderDetails);
-        if (this.orderDetails?.order_status !== "Pending") {
+        if (this.orderDetails?.order_status !== "Created") {
           this.stopPolling();
           this.orderStatus = true;
         }

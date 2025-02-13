@@ -1,45 +1,3 @@
-<!-- <nav class="navbar navbar-expand-lg">
-  <div
-    class="container-fluid d-flex justify-content-between align-items-center"
-  >
-    <div class="d-flex align-items-center">
-      
-      <div class="navbar-icon">
-        <img src="../../assets/Images/Frame 5.png" alt="Logo" width="24" />
-      </div>
-     
-      <div class="location-bar">
-        <img src="../../assets/Images/location-arrow.png" alt="Location Icon" />
-        <span class="nav-text">Kalyan Vihar, Railway Colony, Ma...</span>
-      </div>
-    </div>
-
-
-    <div class="d-flex align-items-center">
- 
-      <div class="me-4">
-        <span class="search-icon"
-          ><img src="../../assets/Images/search.png" alt="" srcset="" />
-          Search</span
-        >
-      </div>
- 
-      <div class="me-4">
-        <span class="signin-icon"
-          ><img src="../../assets/Images/user (1).png" alt="" srcset="" /> Sign
-          in</span
-        >
-      </div>
-     
-      <div>
-        <span class="cart-icon"
-          ><img src="../../assets/Images/Vector (2).png" alt="" srcset="" />
-          Cart</span
-        >
-      </div>
-    </div>
-  </div>
-</nav> -->
 <app-navbar></app-navbar>
 <div class="bannerSection">
   <div class="banner-container">
@@ -111,794 +69,150 @@
         </div>
         <!-- </div> -->
       </ngx-slick-carousel>
-      <!-- <div class="col-6 col-sm-4 col-md-3 col-lg-1 text-center">
-        <div class="icon-item">
-          <img
-            src="../../assets/Images/sushi in a round plate top view only.png "
-            alt="Asian"
-          />
-          <p>Asian</p>
-        </div>
-      </div> -->
-      <!-- <div class="col-6 col-sm-4 col-md-3 col-lg-1 text-center">
-        <div class="icon-item">
-          <img
-            src="../../assets/Images/a nice dish from top view.png"
-            alt="South Asian"
-          />
-          <p>South Asian</p>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-1 text-center">
-        <div class="icon-item">
-          <img
-            src="../../assets/Images/italian pizza in a round plate top view only.png"
-            alt="Italian"
-          />
-          <p>Italian</p>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-1 text-center">
-        <div class="icon-item">
-          <img
-            src="../../assets/Images/south indian dish in a round plate top view only.png"
-            alt="Indian"
-          />
-          <p>Indian</p>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-1 text-center">
-        <div class="icon-item">
-          <img
-            src="../../assets/Images/italian pizza in a round plate top view only.png"
-            alt="Mediterranean"
-          />
-          <p>Mediterranean</p>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-1 text-center">
-        <div class="icon-item">
-          <img
-            src="../../assets/Images/a nice dish from top view.png"
-            alt="French"
-          />
-          <p>French</p>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-1 text-center">
-        <div class="icon-item">
-          <img
-            src="../../assets/Images/sushi in a round plate top view only.png "
-            alt="Japanese"
-          />
-          <p>Japanese</p>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-1 text-center">
-        <div class="icon-item">
-          <img
-            src="../../assets/Images/south indian dish in a round plate top view only.png"
-            alt="Thai"
-          />
-          <p>Thai</p>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-1 text-center">
-        <div class="icon-item">
-          <img
-            src="../../assets/Images/south indian dish in a round plate top view only.png"
-            alt="Thai"
-          />
-          <p>Thai</p>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-1 text-center">
-        <div class="icon-item">
-          <img
-            src="../../assets/Images/south indian dish in a round plate top view only.png"
-            alt="Thai"
-          />
-          <p>Thai</p>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-1 text-center">
-        <div class="icon-item">
-          <img
-            src="../../assets/Images/south indian dish in a round plate top view only.png"
-            alt="Thai"
-          />
-          <p>Thai</p>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-1 text-center">
-        <div class="icon-item">
-          <img
-            src="../../assets/Images/south indian dish in a round plate top view only.png"
-            alt="Thai"
-          />
-          <p>Thai</p>
-        </div>
-      </div> -->
-    </div>
-  </div>
-</div>
-<!-- slider Section -->
-<!-- <ngx-slick-carousel #slickCarousel class="carousel" [config]="slideConfig">
-  <div class="resturant_section">
-    <div class="container py-5">
-      <div class="row g-4">
-        <div
-          class="col-12 col-sm-6 col-md-4 col-lg-3"
-          *ngFor="let restaurant of restaurants"
-        >
-          <div class="restaurant-card">
-            <img [src]="restaurant.image" alt="Restaurant Image" />
-            <h5 class="restaurant-name">{{ restaurant.name }}</h5>
-            <div class="restaurant-details d-flex align-items-center">
-              <img
-                src="../../assets/Images/star.png"
-                alt="Star"
-                style="width: 16px; height: 16px; margin-right: 4px"
-              />
-              <span class="rating_color">{{ restaurant.rating }}</span>
-              <span class="rating_color">• {{ restaurant.time }}</span>
-            </div>
-            <p class="dishDetails">
-              {{ restaurant.details }}<br />
-              {{ restaurant.location }}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</ngx-slick-carousel> -->
-<section class="py-5">
-  <div class="bestOpSection">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <h3 class="fw-bold mb-0">Best options close to you</h3>
-      <div>
-        <!-- Navigation Buttons -->
-        <button class="btn rounded-circle me-1" (click)="navigatePrev()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="currentColor"
-            class="bi bi-arrow-left-circle"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
-            />
-          </svg>
-        </button>
-        <button class="btn rounded-circle" (click)="navigateNext()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="currentColor"
-            class="bi bi-arrow-right-circle"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"
-            />
-          </svg>
-        </button>
-      </div>
-    </div>
-    <ngx-slick-carousel #slickCarousel class="carousel" [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let item of restaurantList" class="slide">
-        <!-- <div class="restaurant-card">
-          <img [src]="item.image" alt="Restaurant Image" />
-          <h5 class="restaurant-name">{{ item.name }}</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <img
-              src="/assets/Images/star.png"
-              alt="Star"
-              style="width: 16px; height: 16px; margin-right: 4px"
-            />
-            <span class="rating_color">{{ item.rating }}</span>
-            <span class="rating_color">• {{ item.time }}</span>
-          </div>
-          <p class="dishDetails">
-            {{ item.details }}<br />
-            {{ item.location }}
-          </p>
-        </div> -->
-        <div class="restaurant-card hand" (click)="onResClick(item?.id)">
-          <div class="image-container">
-            <img
-              [src]="
-                item?.image ||
-                '../../assets/Images/e5491f3e2656022bbd45cf43455c5e70.jpg'
-              "
-              [alt]="item.res_name"
-              class="restaurant-image"
-            />
-            <!-- <button (click)="addItem(restaurant)" class="add-button">ADD +</button> -->
-          </div>
-          <h5 class="restaurant-name">{{ item?.res_name }}</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <p>
-              <span class="d-flex align-items-center">
-                <img
-                  src="../../assets/Images/tachometer-fast.png"
-                  alt="Time Icon"
-                  style="width: 16px; height: 16px; margin-right: 4px"
-                />15 mins<br />
-              </span>
-              <span class="dishDetails">
-                <ng-container
-                  *ngFor="
-                    let cuisine of item?.cuisinesList.slice(0, 4);
-                    let last = last
-                  "
+
+      <section class="py-5">
+        <div class="bestOpSection">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="fw-bold mb-0">Best options close to you</h3>
+            <div>
+              <!-- Navigation Buttons -->
+              <button class="btn rounded-circle me-1" (click)="navigatePrev()">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="bi bi-arrow-left-circle"
+                  viewBox="0 0 16 16"
                 >
-                  {{ cuisine?.item_text }}<span *ngIf="!last">, </span>
-                </ng-container>
-              </span>
-            </p>
+                  <path
+                    fill-rule="evenodd"
+                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
+                  />
+                </svg>
+              </button>
+              <button class="btn rounded-circle" (click)="navigateNext()">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="bi bi-arrow-right-circle"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
-      </div>
-    </ngx-slick-carousel>
-  </div>
-</section>
-<!-- <div class="dish_section">
-  <div class="section-container">
-    <h2 class="section-title">What's on your mind?</h2>
-    <div class="icon-row">
-      <div class="icon-item">
-        <img
-          src="../../assets/Images/sushi in a round plate top view only.png "
-          alt="Asian"
-        />
-        <p>Asian</p>
-      </div>
-      <div class="icon-item">
-        <img
-          src="../../assets/Images/sushi in a round plate top view only.png "
-          alt="South Asian"
-        />
-        <p>South Asian</p>
-      </div>
-      <div class="icon-item">
-        <img
-          src="../../assets/Images/sushi in a round plate top view only.png "
-          alt="Italian"
-        />
-        <p>Italian</p>
-      </div>
-      <div class="icon-item">
-        <img
-          src="../../assets/Images/sushi in a round plate top view only.png "
-          alt="Indian"
-        />
-        <p>Indian</p>
-      </div>
-      <div class="icon-item">
-        <img
-          src="../../assets/Images/sushi in a round plate top view only.png "
-          alt="Mediterranean"
-        />
-        <p>Mediterranean</p>
-      </div>
-      <div class="icon-item">
-        <img
-          src="../../assets/Images/sushi in a round plate top view only.png "
-          alt="French"
-        />
-        <p>French</p>
-      </div>
-      <div class="icon-item">
-        <img
-        src="../../assets/Images/sushi in a round plate top view only.png "
-        alt="Japanese"
-        />
-        <p>Japanese</p>
-      </div>
-      <div class="icon-item">
-        <img
-        src="../../assets/Images/sushi in a round plate top view only.png "
-        alt="Thai"
-        />
-        <p>Thai</p>
-      </div>
-    </div>
-  </div>
-</div> -->
-<!-- <button (click)="addItem()" class="add-button">ADD +</button> -->
-<!-- <div class="resturant_section">
-  <div class="dish_container py-5">
-    <h2 class="section-title">
-      Restaurants with online food delivery in Bhubaneswar
-    </h2>
-    <div class="row g-4">
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <div class="image-container">
-            <img
-              src="../../assets/Images/e5491f3e2656022bbd45cf43455c5e70.jpg"
-              alt="Restaurant Image"
-              class="restaurant-image"
-            />
-          </div>
-          <h5 class="restaurant-name">Silver Tiger Tavern</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <p>
-              <img
-                src="../../assets/Images/tachometer-fast.png"
-                alt="Star"
-                style="width: 16px; height: 16px; margin-right: 4px"
-              />
-              15 mins<br />
-              <span class="dishDetails">Chinese, Asian, Tibetan, Desserts</span>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <p>
-              <img
-                src="../../assets/Images/tachometer-fast.png"
-                alt="Star"
-                style="width: 16px; height: 16px; margin-right: 4px"
-              />
-              15 mins<br />
-              <span class="dishDetails">Chinese, Asian, Tibetan, Desserts</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <p>
-              <img
-                src="../../assets/Images/tachometer-fast.png"
-                alt="Star"
-                style="width: 16px; height: 16px; margin-right: 4px"
-              />
-              15 mins<br />
-              <span class="dishDetails">Chinese, Asian, Tibetan, Desserts</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <p>
-              <img
-                src="../../assets/Images/tachometer-fast.png"
-                alt="Star"
-                style="width: 16px; height: 16px; margin-right: 4px"
-              />
-              15 mins<br />
-              <span class="dishDetails">Chinese, Asian, Tibetan, Desserts</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <p>
-              <img
-                src="../../assets/Images/tachometer-fast.png"
-                alt="Star"
-                style="width: 16px; height: 16px; margin-right: 4px"
-              />
-              15 mins<br />
-              <span class="dishDetails">Chinese, Asian, Tibetan, Desserts</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <p>
-              <img
-                src="../../assets/Images/tachometer-fast.png"
-                alt="Star"
-                style="width: 16px; height: 16px; margin-right: 4px"
-              />
-              15 mins<br />
-              <span class="dishDetails">Chinese, Asian, Tibetan, Desserts</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <p>
-              <img
-                src="../../assets/Images/tachometer-fast.png"
-                alt="Star"
-                style="width: 16px; height: 16px; margin-right: 4px"
-              />
-              15 mins<br />
-              <span class="dishDetails">Chinese, Asian, Tibetan, Desserts</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <p>
-              <img
-                src="../../assets/Images/tachometer-fast.png"
-                alt="Star"
-                style="width: 16px; height: 16px; margin-right: 4px"
-              />
-              15 mins<br />
-              <span class="dishDetails">Chinese, Asian, Tibetan, Desserts</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <p>
-              <img
-                src="../../assets/Images/tachometer-fast.png"
-                alt="Star"
-                style="width: 16px; height: 16px; margin-right: 4px"
-              />
-              <span>15 mins</span><br />
-              <span class="dishDetails">Chinese, Asian, Tibetan, Desserts</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <img
-              src="../../assets/Images/star.png"
-              alt="Star"
-              style="width: 16px; height: 16px; margin-right: 4px"
-            />
-            <span class="rating_color">4.3</span>
-            <span class="rating_color">• 35-40 mins</span>
-          </div>
-          <p class="dishDetails">
-            Chinese, Asian, Tibetan, Desserts<br />
-            Adigodi
-          </p>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <img
-              src="../../assets/Images/star.png"
-              alt="Star"
-              style="width: 16px; height: 16px; margin-right: 4px"
-            />
-            <span class="rating_color">4.3</span>
-            <span class="rating_color">• 35-40 mins</span>
-          </div>
-          <p class="dishDetails">
-            Chinese, Asian, Tibetan, Desserts<br />
-            Adigodi
-          </p>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <img
-              src="../../assets/Images/star.png"
-              alt="Star"
-              style="width: 16px; height: 16px; margin-right: 4px"
-            />
-            <span class="rating_color">4.3</span>
-            <span class="rating_color">• 35-40 mins</span>
-          </div>
-          <p class="dishDetails">
-            Chinese, Asian, Tibetan, Desserts<br />
-            Adigodi
-          </p>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <img
-              src="../../assets/Images/star.png"
-              alt="Star"
-              style="width: 16px; height: 16px; margin-right: 4px"
-            />
-            <span class="rating_color">4.3</span>
-            <span class="rating_color">• 35-40 mins</span>
-          </div>
-          <p class="dishDetails">
-            Chinese, Asian, Tibetan, Desserts<br />
-            Adigodi
-          </p>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <img
-              src="../../assets/Images/star.png"
-              alt="Star"
-              style="width: 16px; height: 16px; margin-right: 4px"
-            />
-            <span class="rating_color">4.3</span>
-            <span class="rating_color">• 35-40 mins</span>
-          </div>
-          <p class="dishDetails">
-            Chinese, Asian, Tibetan, Desserts<br />
-            Adigodi
-          </p>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <img
-              src="../../assets/Images/star.png"
-              alt="Star"
-              style="width: 16px; height: 16px; margin-right: 4px"
-            />
-            <span class="rating_color">4.3</span>
-            <span class="rating_color">• 35-40 mins</span>
-          </div>
-          <p class="dishDetails">
-            Chinese, Asian, Tibetan, Desserts<br />
-            Adigodi
-          </p>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <img
-              src="../../assets/Images/star.png"
-              alt="Star"
-              style="width: 16px; height: 16px; margin-right: 4px"
-            />
-            <span class="rating_color">4.3</span>
-            <span class="rating_color">• 35-40 mins</span>
-          </div>
-          <p class="dishDetails">
-            Chinese, Asian, Tibetan, Desserts<br />
-            Adigodi
-          </p>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <img
-              src="../../assets/Images/star.png"
-              alt="Star"
-              style="width: 16px; height: 16px; margin-right: 4px"
-            />
-            <span class="rating_color">4.3</span>
-            <span class="rating_color">• 35-40 mins</span>
-          </div>
-          <p class="dishDetails">
-            Chinese, Asian, Tibetan, Desserts<br />
-            Adigodi
-          </p>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <img
-              src="../../assets/Images/star.png"
-              alt="Star"
-              style="width: 16px; height: 16px; margin-right: 4px"
-            />
-            <span class="rating_color">4.3</span>
-            <span class="rating_color">• 35-40 mins</span>
-          </div>
-          <p class="dishDetails">
-            Chinese, Asian, Tibetan, Desserts<br />
-            Adigodi
-          </p>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <img
-              src="../../assets/Images/star.png"
-              alt="Star"
-              style="width: 16px; height: 16px; margin-right: 4px"
-            />
-            <span class="rating_color">4.3</span>
-            <span class="rating_color">• 35-40 mins</span>
-          </div>
-          <p class="dishDetails">
-            Chinese, Asian, Tibetan, Desserts<br />
-            Adigodi
-          </p>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="restaurant-card">
-          <img
-            src="../../assets/Images/graphics (1).png"
-            alt="Restaurant Image"
-          />
-          <h5 class="restaurant-name">Chinese Wok</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <img
-              src="../../assets/Images/star.png"
-              alt="Star"
-              style="width: 16px; height: 16px; margin-right: 4px"
-            />
-            <span class="rating_color">4.3</span>
-            <span class="rating_color">• 35-40 mins</span>
-          </div>
-          <p class="dishDetails">
-            Chinese, Asian, Tibetan, Desserts<br />
-            Adigodi
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<div class="resturant_section">
-  <div class="dish_container py-5">
-    <h2 class="section-title">
-      Restaurants with online food delivery in Bhubaneswar
-    </h2>
-    <div class="row g-4">
-      <div
-        *ngFor="let restaurant of restaurantList"
-        class="col-12 col-sm-6 col-md-4 col-lg-3"
-      >
-        <div class="restaurant-card hand" (click)="onResClick(restaurant?.id)">
-          <div class="image-container">
-            <img
-              [src]="
-                restaurant?.image ||
-                '../../assets/Images/e5491f3e2656022bbd45cf43455c5e70.jpg'
-              "
-              [alt]="restaurant?.res_name"
-              class="restaurant-image"
-            />
-            <!-- <button (click)="addItem(restaurant)" class="add-button">ADD +</button> -->
-          </div>
-          <h5 class="restaurant-name">{{ restaurant?.res_name }}</h5>
-          <div class="restaurant-details d-flex align-items-center">
-            <p>
-              <img
-                src="../../assets/Images/tachometer-fast.png"
-                alt="Time Icon"
-                style="width: 16px; height: 16px; margin-right: 4px"
-              />
-              15 mins<br />
-              <span class="dishDetails">
-                <ng-container *ngIf="restaurant?.cuisinesList">
-                  <ng-container
-                    *ngFor="
-                      let cuisine of restaurant?.cuisinesList?.slice(0, 4);
-                      let last = last
+          <ngx-slick-carousel
+            #slickCarousel
+            class="carousel"
+            [config]="slideConfig"
+          >
+            <div ngxSlickItem *ngFor="let item of restaurantList" class="slide">
+              <div class="restaurant-card hand" (click)="onResClick(item?.id)">
+                <div class="image-container">
+                  <img
+                    [src]="
+                      item?.image ||
+                      '../../assets/Images/e5491f3e2656022bbd45cf43455c5e70.jpg'
                     "
-                  >
-                    {{ cuisine?.item_text }}<span *ngIf="!last">, </span>
-                  </ng-container>
-                </ng-container>
-              </span>
-            </p>
+                    [alt]="item.res_name"
+                    class="restaurant-image"
+                  />
+                  <!-- <button (click)="addItem(restaurant)" class="add-button">ADD +</button> -->
+                </div>
+                <h5 class="restaurant-name">{{ item?.res_name }}</h5>
+                <div class="restaurant-details d-flex align-items-center">
+                  <p>
+                    <span class="d-flex align-items-center">
+                      <img
+                        src="../../assets/Images/tachometer-fast.png"
+                        alt="Time Icon"
+                        style="width: 16px; height: 16px; margin-right: 4px"
+                      />15 mins<br />
+                    </span>
+                    <span class="dishDetails">
+                      <ng-container
+                        *ngFor="
+                          let cuisine of item?.cuisinesList.slice(0, 4);
+                          let last = last
+                        "
+                      >
+                        {{ cuisine?.item_text }}<span *ngIf="!last">, </span>
+                      </ng-container>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </ngx-slick-carousel>
+        </div>
+      </section>
+
+      <div class="resturant_section">
+        <div class="dish_container py-5">
+          <h2 class="section-title">
+            Restaurants with online food delivery in Bhubaneswar
+          </h2>
+          <div class="row g-4">
+            <div
+              *ngFor="let restaurant of restaurantList"
+              class="col-12 col-sm-6 col-md-4 col-lg-3"
+            >
+              <div
+                class="restaurant-card hand"
+                (click)="onResClick(restaurant?.id)"
+              >
+                <div class="image-container">
+                  <img
+                    [src]="
+                      restaurant?.image ||
+                      '../../assets/Images/e5491f3e2656022bbd45cf43455c5e70.jpg'
+                    "
+                    [alt]="restaurant?.res_name"
+                    class="restaurant-image"
+                  />
+                  <!-- <button (click)="addItem(restaurant)" class="add-button">ADD +</button> -->
+                </div>
+                <h5 class="restaurant-name">{{ restaurant?.res_name }}</h5>
+                <div class="restaurant-details d-flex align-items-center">
+                  <p>
+                    <img
+                      src="../../assets/Images/tachometer-fast.png"
+                      alt="Time Icon"
+                      style="width: 16px; height: 16px; margin-right: 4px"
+                    />
+                    15 mins<br />
+                    <span class="dishDetails">
+                      <ng-container *ngIf="restaurant?.cuisinesList">
+                        <ng-container
+                          *ngFor="
+                            let cuisine of restaurant?.cuisinesList?.slice(
+                              0,
+                              4
+                            );
+                            let last = last
+                          "
+                        >
+                          {{ cuisine?.item_text }}<span *ngIf="!last">, </span>
+                        </ng-container>
+                      </ng-container>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- footer section -->
+      <app-footer></app-footer>
     </div>
   </div>
 </div>
-
-<!-- footer section -->
-<app-footer></app-footer>
