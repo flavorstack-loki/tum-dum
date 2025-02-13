@@ -107,29 +107,29 @@ export class CheckOutComponent implements OnInit {
   onGobackClick() {
     this.router.navigate(["home/restaurant_Detail", this.resId]);
   }
-  onOrder() {
-    let fd = {
-      customer_id: this.userId,
-      menu_total_price: this.totalPrice,
-      menu_total_quantity: this.totalQty,
-      order_id: "",
-      order_status: "",
-      res_id: "",
-      paymentStatus: "Pending",
-      created_time: new Date().toISOString(),
-    };
-    console.log("fd", fd);
-    const docRef = this.firestore
-      .collection("customerOrders")
-      .doc(this.userId?.toString())
-      .set(fd)
-      .then(() => {
-        console.log("order Successfully Saved");
-      })
-      .catch((error) => {
-        console.error("Firestore update error:", error);
-      });
-  }
+  // onOrder() {
+  //   let fd = {
+  //     customer_id: this.userId,
+  //     menu_total_price: this.totalPrice,
+  //     menu_total_quantity: this.totalQty,
+  //     order_id: "",
+  //     order_status: "",
+  //     res_id: "",
+  //     paymentStatus: "Pending",
+  //     created_time: new Date().toISOString(),
+  //   };
+  //   console.log("fd", fd);
+  //   const docRef = this.firestore
+  //     .collection("customerOrders")
+  //     .doc(this.userId?.toString())
+  //     .set(fd)
+  //     .then(() => {
+  //       console.log("order Successfully Saved");
+  //     })
+  //     .catch((error) => {
+  //       console.error("Firestore update error:", error);
+  //     });
+  // }
 
   async createOrder(): Promise<void> {
     this.openModal();
