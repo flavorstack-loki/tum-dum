@@ -22,7 +22,7 @@ export class RestaurantDetailsComponent implements OnInit {
   //   "North Indian",
   //   "North Indian",
   // ];
-  userId: string = "FI1sl8HaEzgn3V5FA4h3RpbMxD63";
+  userId: string = "";
   menuData: any;
   resId: any;
   path: any;
@@ -50,7 +50,7 @@ export class RestaurantDetailsComponent implements OnInit {
       this.resId = param.get("id") || 0;
       this.path = this.activeRoute.snapshot.paramMap.get("path");
       // console.log("path", this.path);
-
+      this.checkLogin();
       this.getRestaurantDetails();
       this.getCartDetailsByUserId();
       console.log("this.resId ", this.resId);
@@ -124,6 +124,10 @@ export class RestaurantDetailsComponent implements OnInit {
   }
 
   cartUpdate(item: any, quantity: number, isFirst = false) {
+    if (this.userId == "") {
+      alert("Please Signin to add item to cart");
+      return;
+    }
     const date = new Date();
     if (item.resId !== this.resId) {
       this.cartItemsMapper = new Map();
@@ -150,6 +154,7 @@ export class RestaurantDetailsComponent implements OnInit {
 
     this.calTotalPrice();
     if (isFirst) return;
+
     let fd = {
       menuItems: Array.from(this.cartItemsMapper.values()),
       resId: this.resId,
@@ -179,5 +184,10 @@ export class RestaurantDetailsComponent implements OnInit {
   onCatClick(cat: any) {
     this.activeCat = cat;
     document.getElementById(cat)?.scrollIntoView({ behavior: "smooth" });
+  }
+  checkLogin() {
+    let loginUser: any = sessionStorage.getItem("user");
+    let loggedUser = JSON.parse(loginUser);
+    this.userId = loggedUser?.uid.toString() || "";
   }
 }

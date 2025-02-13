@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="horizontalLine d-flex">
-  <a (click)="onGobackClick()" class="go-back-btn">
+  <a (click)="onGobackClick()" class="go-back-btn hand">
     <img src="../../assets/Images/arrow-left.png" alt="Back Arrow" />
     Go Back
   </a>
@@ -250,21 +250,76 @@
 </div>
 
 <!-- Pending Modal -->
-<div class="modal-backdrop" *ngIf="isOpen">
+<div class="modal-backdrop" *ngIf="isOpen && !isDeclined">
   <div class="modal-content">
     <h2><Span *ngIf="!orderStatus" class="text-danger">Please wait !</Span></h2>
     <h2><Span *ngIf="orderStatus" class="text-success">Accepted !</Span></h2>
     <p *ngIf="!orderStatus">
-      While "{{ resDetails?.res_name }}" confirms your order,after that you can
-      proceed for payment..
+      While {{ resDetails?.res_name || "your restaurant" }} confirms your
+      order,after that you can proceed for payment.It usually takes
+      less then 2 mins.
     </p>
     <p *ngIf="orderStatus">
-      Your Order has been accepted by "{{ resDetails?.res_name }}",now you can
-      proceed for payment..
+      Your Order has been accepted by "{{
+        resDetails?.res_name || "your restaurant"
+      }}",now you can proceed for payment..
     </p>
     <p class="text-danger">Don't go back or reload the page</p>
     <button *ngIf="orderStatus" class="btn btn-success" (click)="payWithUPI()">
       Proceed to Payment
+    </button>
+  </div>
+</div>
+<!-- declined -->
+<div class="modal-backdrop" *ngIf="isDeclined">
+  <div class="modal-content">
+    <h2><Span class="text-danger">Declined !</Span></h2>
+    <p>
+      Your Order has been declined by
+      {{ resDetails?.res_name || "your restaurant" }} .Please try other
+      restaurants
+    </p>
+    <button [routerLink]="['/home']" class="btn btn-success">Close</button>
+  </div>
+</div>
+<!-- payment -->
+<div class="modal-backdrop" *ngIf="paymentStatus">
+  <div class="modal-content">
+    <h2>
+      <Span *ngIf="paymentAccepted" class="text-success">Paid !</Span>
+      <Span *ngIf="paymentDeclined" class="text-danger">Declined !</Span>
+      <Span *ngIf="paymentPending" class="text-primary">Please Wait !</Span>
+    </h2>
+    <p *ngIf="paymentPending">
+      While we are conforming your payment details with the restaurant.It
+      usually takes less then 2 mins.<br />
+      <span class="text-danger">Don't go back or reload the page</span>
+    </p>
+    <p *ngIf="paymentAccepted">
+      The restaurant has successfully received your payment for your meal or
+      order, and the transaction is complete.
+    </p>
+    <p *ngIf="paymentDeclined">
+      Sorry ! your order couldn’t be placed as
+      {{ resDetails?.res_name || "your restaurant" }} didn’t receive your
+      payment.Please contact {{ resDetails?.res_name || "your restaurant" }} for
+      further enquiry.
+    </p>
+    <button
+      type="button"
+      *ngIf="!paymentPending && paymentAccepted && !paymentDeclined"
+      [routerLink]="['/home']"
+      class="btn btn-success"
+    >
+      Close
+    </button>
+    <button
+      type="button"
+      *ngIf="paymentDeclined && !paymentPending"
+      (click)="closeModal2()"
+      class="btn btn-danger"
+    >
+      Close
     </button>
   </div>
 </div>

@@ -4,14 +4,14 @@ import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppService } from "../services/app.service";
 import { CartService } from "../services/cartServices/cart.service";
-
+import { Timestamp, serverTimestamp } from "firebase/firestore"; // Correct import
 @Component({
   selector: "app-check-out",
   templateUrl: "./check-out.component.html",
   styleUrl: "./check-out.component.scss",
 })
 export class CheckOutComponent implements OnInit {
-  userId: string = "FI1sl8HaEzgn3V5FA4h3RpbMxD63";
+  userId: string = "";
   cartItems: any[] = [];
   totalPrice: number = 0;
   resId: any;
@@ -26,6 +26,13 @@ export class CheckOutComponent implements OnInit {
   orderStatus: boolean = false;
   orderDetails: any;
   orderStatusInterval: any;
+  orderType: any;
+  isDeclined: boolean = false;
+  paymentStatus: boolean = false;
+  paymentAccepted: boolean = false;
+  paymentPending: boolean = false;
+  paymentDeclined: boolean = false;
+  merchantName: string = "TUMDUM";
   constructor(
     // private apiService: ApiService,
     // private authService: AuthService,
@@ -38,6 +45,7 @@ export class CheckOutComponent implements OnInit {
     private appService: AppService // private toastr: ToastrService
   ) {}
   ngOnInit(): void {
+    this.checkLogin();
     this.getCartDetailsByUserId();
   }
   openModal() {
@@ -47,17 +55,65 @@ export class CheckOutComponent implements OnInit {
   closeModal() {
     this.isOpen = false;
   }
+  closeModal2() {
+    this.paymentStatus = false;
+  }
+
+  // payWithUPI() {
+  //   this.closeModal();
+  //   this.paymentStatus = true;
+  //   const upiUrl = `upi://pay?pa=${this.upiId}&pn=Merchant+Name&tr=${this.orderId}&tn=${this.transactionNote}&am=${this.amount}&cu=INR`;
+  //   //  const upiUrl = `upi://pay?pa=${this.upiId}&pn=Merchant+Name&tr=${this.orderId}&tn=${this.transactionNote}&am=${this.amount}&cu=INR&url=https://yourwebsite.com/payment-status`;
+  //   window.location.href = upiUrl;
+  //   // setTimeout(() => {
+  //   //   // Redirect to a success/failure page after returning from UPI app
+  //   //   this.createOrder();
+  //   // }, 5000);
+  // }
 
   payWithUPI() {
     this.closeModal();
-    const upiUrl = `upi://pay?pa=${this.upiId}&pn=Merchant+Name&tr=${this.orderId}&tn=${this.transactionNote}&am=${this.amount}&cu=INR`;
-    //  const upiUrl = `upi://pay?pa=${this.upiId}&pn=Merchant+Name&tr=${this.orderId}&tn=${this.transactionNote}&am=${this.amount}&cu=INR&url=https://yourwebsite.com/payment-status`;
-    window.location.href = upiUrl;
+    this.paymentStatus = true;
+
+    if (this.isIOS()) {
+      // iOS - Use Google Pay Web URL (since iOS doesn’t support `upi://`)
+      // const gpayUrl = `upi://pay?pa=${encodeURIComponent(
+      //   this.upiId
+      // )}&pn=${encodeURIComponent(this.merchantName)}&tr=${encodeURIComponent(
+      //   this.orderId
+      // )}&am=${encodeURIComponent(this.amount)}&cu=INR`;
+      const phonePeDeepLink = `phonepe://pay?pa=${encodeURIComponent(
+        this.upiId
+      )}&pn=${encodeURIComponent(
+        this.merchantName
+      )}&mc=1234&tid=${encodeURIComponent(
+        this.orderId
+      )}&tr=${encodeURIComponent(
+        this.orderId
+      )}&tn=Payment&am=${encodeURIComponent(this.amount)}&cu=INR`;
+
+      window.location.href = phonePeDeepLink;
+    } else {
+      const upiUrl = `upi://pay?pa=${this.upiId}&pn=Merchant+Name&tr=${this.orderId}&tn=${this.transactionNote}&am=${this.amount}&cu=INR`;
+      // Android - Use direct `upi://` deep link
+      // const upiUrl = `upi://pay?pa=${this.upiId}&pn=${encodeURIComponent(
+      //   this.merchantName
+      // )}&tr=${this.orderId}&tn=${this.transactionNote}&am=${
+      //   this.amount
+      // }&cu=INR`;
+      window.location.href = upiUrl;
+    }
+
     // setTimeout(() => {
-    //   // Redirect to a success/failure page after returning from UPI app
+    //   // Redirect to payment status page
     //   this.createOrder();
     // }, 5000);
   }
+
+  isIOS(): boolean {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent);
+  }
+
   getCartDetailsByUserId() {
     let cartData: any;
     this.cartService
@@ -95,12 +151,19 @@ export class CheckOutComponent implements OnInit {
       .getRestaurantDetailsDocumentById(this.resId)
       .subscribe((snapshot: any) => {
         this.resDetails = snapshot.data();
+        this.upiId = this.resDetails?.upiId || "";
+        this.merchantName = this.resDetails?.res_name;
         console.log("resDetails", this.resDetails);
       });
   }
 
   onChecked() {
     this.checkedAgree = !this.checkedAgree;
+    if (this.checkedAgree == true) {
+      this.orderType = "Resturant Pickup";
+    } else {
+      this.orderType = "Resturant Delivery";
+    }
     console.log("checkedAgree", this.checkedAgree);
   }
 
@@ -138,13 +201,8 @@ export class CheckOutComponent implements OnInit {
     this.orderId = orderId.toString();
     this.amount = this.totalPrice.toString();
     const batch = this.firestore.firestore.batch();
-    this.getOrderStatus(orderId);
-
-    // Set an interval to call it every 5 seconds
-    this.orderStatusInterval = setInterval(() => {
-      this.getOrderStatus(orderId);
-    }, 5000);
-    return;
+    // this.getOrderStatus(orderId);
+    // return;
     const orderRef = this.firestore
       .collection("customerOrders")
       .doc(orderId.toString()).ref;
@@ -158,10 +216,12 @@ export class CheckOutComponent implements OnInit {
       menu_total_price: this.totalPrice,
       menu_total_quantity: this.totalQty,
       order_id: orderId.toString(),
-      order_status: "Pending",
+      order_status: "Created",
       res_id: this.resId,
-      paymentStatus: "",
-      created_time: new Date().toISOString(),
+      paymentStatus: "Pending",
+      orderType: "",
+      created_time: new Date(),
+      // created_time: Timestamp.now(),
     });
 
     this.cartItems.forEach((item: any) => {
@@ -174,17 +234,49 @@ export class CheckOutComponent implements OnInit {
     });
 
     await batch.commit();
+    this.orderStatusInterval = setInterval(() => {
+      this.getOrderStatus(orderId);
+    }, 2000);
   }
 
   getOrderStatus(orderId: any) {
-    orderId = "1739345735236";
+    // orderId = "1739345735236";
     this.cartService.getOrderDetailsDocumentById(orderId.toString()).subscribe(
       (snapshot: any) => {
         this.orderDetails = snapshot.data();
         console.log("orderDetails", this.orderDetails);
-        if (this.orderDetails?.order_status !== "Created") {
-          this.stopPolling();
+        if (this.orderDetails?.order_status == "Accepted") {
           this.orderStatus = true;
+          this.getPaymentStaus(orderId);
+        } else if (this.orderDetails?.order_status == "Declined") {
+          this.stopPolling();
+          this.isDeclined = true;
+        } else if (this.orderDetails?.order_status == "Failed") {
+          this.getPaymentStaus(orderId);
+        }
+      },
+      (error) => {
+        console.error("Error fetching order status:", error);
+      }
+    );
+  }
+  getPaymentStaus(orderId: any) {
+    this.cartService.getOrderDetailsDocumentById(orderId.toString()).subscribe(
+      (snapshot: any) => {
+        this.orderDetails = snapshot.data();
+        console.log("orderDetails", this.orderDetails);
+        if (this.orderDetails?.paymentStatus == "Pending") {
+          this.paymentPending = true;
+        } else if (this.orderDetails?.paymentStatus == "Paid") {
+          this.paymentAccepted = true;
+          this.paymentPending = false;
+          this.paymentDeclined = false;
+          this.stopPolling();
+        } else if (this.orderDetails?.paymentStatus == "Unpaid") {
+          this.paymentDeclined = true;
+          this.paymentPending = false;
+          this.paymentAccepted = false;
+          this.stopPolling();
         }
       },
       (error) => {
@@ -199,5 +291,10 @@ export class CheckOutComponent implements OnInit {
       this.orderStatusInterval = null;
       console.log("Polling stopped"); // Debugging
     }
+  }
+  checkLogin() {
+    let loginUser: any = sessionStorage.getItem("user");
+    let loggedUser = JSON.parse(loginUser);
+    this.userId = loggedUser?.uid.toString() || "";
   }
 }

@@ -50,6 +50,7 @@
         <!-- Sign In -->
         <li class="nav-item hand">
           <a
+            *ngIf="!logged"
             class="nav-link d-flex align-items-center"
             data-bs-toggle="modal"
             data-bs-target="#loginModal"
@@ -57,14 +58,23 @@
             <img src="../../assets/Images/user (1).png" alt="User Icon" />
             <span class="ms-2">Sign in</span>
           </a>
+          <a
+            *ngIf="logged"
+            class="nav-link d-flex align-items-center"
+            (click)="onLogout()"
+          >
+            <img src="../../assets/Images/user (1).png" alt="User Icon" />
+
+            <span class="ms-2">Logout</span>
+          </a>
         </li>
         <!-- Cart -->
         <li class="nav-item hand">
+          <!-- [routerLink]="['/check_out']" -->
           <a
-            [routerLink]="['/check_out']"
+            (click)="onCartClick()"
             routerLinkActive="router-link-active"
             class="nav-link d-flex align-items-center"
-            href="#"
           >
             <img src="../../assets/Images/Vector (2).png" alt="Cart Icon" />
             <span class="ms-2">Cart</span>
@@ -178,7 +188,7 @@
           Ultimate food delivery, serving mouthwatering dishes to your doorstep
           instantly!
         </p>
-        <form [formGroup]="loginForm" (ngSubmit)="sendOtp(false)">
+        <form [formGroup]="loginForm" (ngSubmit)="sendOtp(false, otpref)">
           <!-- Phone Input -->
           <input
             type="tel"
@@ -189,10 +199,18 @@
           <div id="recaptcha-container" class="mt-3"></div>
           <!-- Get OTP Button -->
           <button
+            #otpref
+            type="button"
             [disabled]="loginForm.invalid"
-            class="btn btn-primary w-100 otp-button"
+            class="btn btn-primary w-100 otp-button d-none"
             data-bs-toggle="modal"
             data-bs-target="#otpModal"
+          >
+            Get OTP
+          </button>
+          <button
+            [disabled]="loginForm.invalid"
+            class="btn btn-primary w-100 otp-button"
           >
             Get OTP
           </button>
@@ -222,6 +240,7 @@
 
 <!-- OTP Verification Modal -->
 <div
+  #otpModal
   class="modal fade"
   id="otpModal"
   tabindex="-1"
@@ -234,15 +253,30 @@
       <p class="text-muted">Verify with Tumdum and start ordering today!</p>
 
       <!-- OTP Input -->
-      <input
-        type="text"
-        class="form-control text-center otp-input"
-        placeholder="Enter 6-digit code"
-        maxlength="6"
-      />
-
+      <form [formGroup]="loginOTPForm">
+        <input
+          type="text"
+          class="form-control text-center otp-input"
+          placeholder="Enter 6-digit code"
+          maxlength="6"
+          formControlName="logOTP"
+        />
+      </form>
       <!-- Continue Button -->
-      <button class="btn btn-primary w-100 mt-3">Continue</button>
+      <button
+        type="button"
+        class="btn btn-primary w-100 mt-3"
+        (click)="onLoginOtpVerification(closeLoginRef)"
+      >
+        Continue
+      </button>
+      <button
+        #closeLoginRef
+        type="button"
+        class="btn-close d-none"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
     </div>
   </div>
 </div>
@@ -269,9 +303,10 @@
     <div class="modal-content p-4">
       <h4 class="fw-bold">Register now</h4>
       <p class="text-muted">Sign up with Tumdum and start ordering today!</p>
-      <form [formGroup]="registerForm" (ngSubmit)="sendOtp(true)">
+      <!-- (ngSubmit)="sendOtp(true)" -->
+      <form [formGroup]="registerForm" (ngSubmit)="sendOtp(true, regOtp)">
         <!-- Name Fields -->
-        <div *ngIf="!otpSent" class="row g-2">
+        <div class="row g-2">
           <div class="col">
             <input
               type="text"
@@ -292,45 +327,88 @@
 
         <!-- Phone Number Field -->
         <input
-          *ngIf="!otpSent"
           type="tel"
           class="form-control input-field mt-2"
           placeholder="812 234 2345"
           formControlName="phone"
         />
-        <input
+        <!-- <input
           type="text"
           class="form-control mt-2"
           [(ngModel)]="otpCode"
           placeholder="Enter 6-digit OTP"
           *ngIf="otpSent"
-        />
+        /> -->
         <div id="recaptcha-container" class="mt-3"></div>
         <!-- Create Account Button -->
         <button
-          *ngIf="!otpSent"
-          class="btn btn-primary w-100 mt-3"
+          #regOtp
+          type="button"
+          class="btn btn-primary w-100 mt-3 d-none"
+          data-bs-toggle="modal"
+          data-bs-target="#otpModal1"
           [disabled]="registerForm.invalid"
         >
           Create account
         </button>
         <button
-          class="btn btn-success w-100 mt-2"
-          (click)="signUp()"
-          *ngIf="otpSent"
+          class="btn btn-primary w-100 mt-3"
+          [disabled]="registerForm.invalid"
         >
-          Verify OTP
-        </button>
-
-        <!-- Already a member? -->
-        <button
-          class="btn btn-link w-100 mt-2"
-          data-bs-toggle="modal"
-          data-bs-target="#loginModal"
-        >
-          Already a member?
+          Create account
         </button>
       </form>
+
+      <!-- Already a member? -->
+      <button
+        type="button"
+        class="btn btn-link w-100 mt-2"
+        data-bs-toggle="modal"
+        data-bs-target="#loginModal"
+      >
+        Already a member?
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Register OTP Verification modal -->
+<div
+  #otpModal1
+  class="modal fade"
+  id="otpModal1"
+  tabindex="-1"
+  aria-labelledby="otpModalLabel1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-4 text-center">
+      <h4 class="fw-bold">Verify it's you</h4>
+      <p class="text-muted">Verify with Tumdum and start ordering today!</p>
+      <form [formGroup]="registerOTPForm">
+        <!-- OTP Input -->
+        <input
+          type="text"
+          class="form-control text-center otp-input"
+          placeholder="Enter 6-digit code"
+          maxlength="6"
+          formControlName="regOTP"
+        />
+      </form>
+      <!-- Continue Button -->
+      <button
+        type="button"
+        class="btn btn-primary w-100 mt-3"
+        (click)="signUp(closeRef)"
+      >
+        Continue
+      </button>
+      <button
+        #closeRef
+        type="button"
+        class="btn-close d-none"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
     </div>
   </div>
 </div>

@@ -52,4 +52,16 @@ export class AppService {
       .doc(documentId)
       .get();
   }
+
+  getRegUserDetailsDocumentById(documentId: string) {
+    return (
+      this.firestore
+        // .collection("registeredRestaurant")
+        // .doc(documentId)
+        .collection("registeredUser", (ref) =>
+          ref.where("phone", "==", documentId)
+        )
+        .valueChanges()
+    );
+  }
 }
