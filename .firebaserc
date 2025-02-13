@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "tumdum-delivery-app",
+    "Prod": "tumdum-delivery-app"
+  },
+  "targets": {
+    "tumdum-delivery-app": {
+      "hosting": {
+        "tumdum-user": [
+          "tumdum-user"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

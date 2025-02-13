@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "target": "tumdum-user",
+    "public": "dist/tumdum-user",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
