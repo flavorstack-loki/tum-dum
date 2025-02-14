@@ -257,6 +257,7 @@
 </div>
 
 <!-- notification -->
+<!-- <div class="info_div"> -->
 <div
   *ngIf="itemsAdded && showNotification"
   id="cart-notification"
@@ -265,5 +266,6 @@
   <span>{{ itemsAdded }} items added</span>
   <a [routerLink]="['/check_out']" class="view-cart">View cart 🛒</a>
 </div>
+<!-- </div> -->
 
 <!-- <app-cart-notification></app-cart-notification> -->

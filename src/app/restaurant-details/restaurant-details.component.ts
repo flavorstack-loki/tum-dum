@@ -59,9 +59,9 @@ export class RestaurantDetailsComponent implements OnInit {
       this.itemCount = count;
       this.showNotification = true;
 
-      setTimeout(() => {
-        this.showNotification = false;
-      }, 3000); // Hide after 3 seconds
+      // setTimeout(() => {
+      //   this.showNotification = false;
+      // }, 3000); // Hide after 3 seconds
     });
     this.getAllMenu();
   }
@@ -167,7 +167,7 @@ export class RestaurantDetailsComponent implements OnInit {
       .set(fd)
       .then(() => {
         this.showNotification = true;
-        setTimeout(() => (this.showNotification = false), 3000);
+        // setTimeout(() => (this.showNotification = false), 3000);
       })
       .catch((error) => {
         console.error("Firestore update error:", error);
@@ -189,5 +189,6 @@ export class RestaurantDetailsComponent implements OnInit {
     let loginUser: any = sessionStorage.getItem("user");
     let loggedUser = JSON.parse(loginUser);
     this.userId = loggedUser?.uid.toString() || "";
+    // this.userId = "064POlUc9DPGRJLnRK6CkLpTs1u2";
   }
 }

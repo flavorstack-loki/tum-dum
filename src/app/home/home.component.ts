@@ -381,8 +381,9 @@ export class HomeComponent implements OnInit {
     this.getRestaurants();
   }
   slideConfig = {
-    slidesToShow: 3,
+    slidesToShow: 4.5,
     slidesToScroll: 1,
+    infinite: false,
     // centerMode: true,
     // centerPadding: "20px",
     arrows: false,
@@ -450,6 +451,51 @@ export class HomeComponent implements OnInit {
       },
     ],
   };
+
+  // slideConfig2 = {
+  //   slidesToShow: 8.5,
+  //   slidesToScroll: 1,
+  //   infinite: true, // Enabled infinite scrolling
+  //   arrows: false, // Hides arrows if controlled externally
+  //   responsive: [
+  //     {
+  //       breakpoint: 1200, // Large screens
+  //       settings: {
+  //         slidesToShow: 6,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 992, // Medium screens (tablets)
+  //       settings: {
+  //         slidesToShow: 5,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 768, // Small tablets
+  //       settings: {
+  //         slidesToShow: 3,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 576, // Large mobile screens
+  //       settings: {
+  //         slidesToShow: 2,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 400, // Small mobile screens
+  //       settings: {
+  //         slidesToShow: 1.5, // Keeps partial next slide visible
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //   ],
+  // };
+
   navigatePrev() {
     this.slickCarousel.slickPrev();
   }

@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { take } from "rxjs/operators";
 import { AppService } from "src/app/services/app.service";
 import { AuthService } from "src/app/services/auth/auth.service";
-
+import Swal from "sweetalert2";
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
@@ -250,9 +250,21 @@ export class NavbarComponent implements OnInit {
     });
   }
   onLogout() {
-    sessionStorage.clear();
-    this.logged = false;
-    this.checkLogin();
+    Swal.fire({
+      title: "Do you want to logout?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: `logout`,
+      denyButtonText: `Don't`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        sessionStorage.clear();
+        this.logged = false;
+        this.checkLogin();
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
   }
   onCartClick() {
     if (this.userId) {
