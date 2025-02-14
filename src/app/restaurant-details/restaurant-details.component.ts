@@ -50,6 +50,7 @@ export class RestaurantDetailsComponent implements OnInit {
       this.resId = param.get("id") || 0;
       this.path = this.activeRoute.snapshot.paramMap.get("path");
       // console.log("path", this.path);
+      // this.cartItemsMapper = new Map()
       this.checkLogin();
       this.getRestaurantDetails();
       this.getCartDetailsByUserId();
@@ -133,6 +134,7 @@ export class RestaurantDetailsComponent implements OnInit {
       this.cartItemsMapper = new Map();
       this.itemsAdded = 0;
     }
+
     let updatedItem = this.cartItemsMapper?.get(item.id) || item;
     updatedItem = {
       ...updatedItem,
