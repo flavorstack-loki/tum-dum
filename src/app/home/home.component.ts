@@ -1,9 +1,16 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit, ViewChild } from "@angular/core";
+import {
+  Component,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild,
+} from "@angular/core";
 import { SlickCarouselComponent } from "ngx-slick-carousel";
 import { Observable } from "rxjs";
 import { AppService } from "../services/app.service";
 import { Router } from "@angular/router";
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
   selector: "app-home",
@@ -17,10 +24,12 @@ export class HomeComponent implements OnInit {
   slickCarousel2!: SlickCarouselComponent;
   ip: any;
   restaurantList: any;
+  detectMobile: boolean = false;
   constructor(
     private http: HttpClient,
     private appService: AppService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
   // slideConfig = {
   //   slidesToShow: 4,
@@ -377,8 +386,8 @@ export class HomeComponent implements OnInit {
   counter: number = 0;
   ngOnInit(): void {
     // this.getIpAddress();
-    console.log("hiii");
     this.getRestaurants();
+    this.isMobile();
   }
   slideConfig = {
     slidesToShow: 4.5,
@@ -394,59 +403,28 @@ export class HomeComponent implements OnInit {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 2.5,
           slidesToScroll: 1,
-          infinite: true,
+          infinite: false,
           // dots: true,
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1.5,
           slidesToScroll: 1,
-          infinite: true,
+          infinite: false,
           // dots: true,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1.5,
           slidesToScroll: 1,
-          infinite: true,
+          infinite: false,
           // dots: true,
-        },
-      },
-    ],
-  };
-
-  slideConfig2 = {
-    slidesToShow: 8.5,
-    slidesToScroll: 1,
-    // dots: false,
-    infinite: false,
-    arrows: false,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
         },
       },
     ],
@@ -455,46 +433,61 @@ export class HomeComponent implements OnInit {
   // slideConfig2 = {
   //   slidesToShow: 8.5,
   //   slidesToScroll: 1,
-  //   infinite: true, // Enabled infinite scrolling
-  //   arrows: false, // Hides arrows if controlled externally
+  //   // dots: false,
+  //   infinite: false,
+  //   arrows: false,
   //   responsive: [
   //     {
-  //       breakpoint: 1200, // Large screens
+  //       breakpoint: 1024,
   //       settings: {
   //         slidesToShow: 6,
   //         slidesToScroll: 1,
   //       },
   //     },
   //     {
-  //       breakpoint: 992, // Medium screens (tablets)
+  //       breakpoint: 768,
   //       settings: {
-  //         slidesToShow: 5,
+  //         slidesToShow: 4,
   //         slidesToScroll: 1,
   //       },
   //     },
   //     {
-  //       breakpoint: 768, // Small tablets
+  //       breakpoint: 480,
   //       settings: {
-  //         slidesToShow: 3,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 576, // Large mobile screens
-  //       settings: {
-  //         slidesToShow: 2,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 400, // Small mobile screens
-  //       settings: {
-  //         slidesToShow: 1.5, // Keeps partial next slide visible
+  //         slidesToShow: 1,
   //         slidesToScroll: 1,
   //       },
   //     },
   //   ],
   // };
+
+  slideConfig2 = {
+    slidesToShow: 8.5,
+    slidesToScroll: 1,
+    arrows: false,
+    dots: false,
+    infinite: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2.5,
+        },
+      },
+    ],
+  };
 
   navigatePrev() {
     this.slickCarousel.slickPrev();
@@ -513,6 +506,15 @@ export class HomeComponent implements OnInit {
         this.ip = "Unable to fetch IP";
       }
     );
+  }
+
+  isMobile() {
+    this.detectMobile =
+      isPlatformBrowser(this.platformId) &&
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+    console.log("this.detectMobile", this.detectMobile);
   }
 
   addItems() {
@@ -546,13 +548,17 @@ export class HomeComponent implements OnInit {
 
   getRestaurants() {
     this.appService.getRestaurantLists().subscribe((res: any) => {
-      this.restaurantList = res.map((restaurant: any) => ({
-        ...restaurant,
-        cuisinesList: restaurant.cuisinesList || [],
-      }));
+      this.restaurantList = res
+        .filter((restaurant: any) => restaurant.isActive) // Keep only active restaurants
+        .map((restaurant: any) => ({
+          ...restaurant,
+          cuisinesList: restaurant.cuisinesList || [],
+        }));
+
       console.log("this.restaurants", this.restaurantList);
     });
   }
+
   onResClick(itemId: any) {
     this.router.navigate(["home/restaurant_Detail", itemId]);
   }

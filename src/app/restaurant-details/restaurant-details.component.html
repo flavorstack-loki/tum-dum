@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="horizontalLine d-flex">
+<div class="horizontalLine d-flex padding">
   <a [routerLink]="['/home']" class="go-back-btn">
     <img src="../../assets/Images/arrow-left.png" alt="Back Arrow" />
     Go Back
@@ -134,7 +134,7 @@
     </div>
 
     <!-- Main Content -->
-    <div class="col-md-8 col-lg-9 p-4">
+    <div class="col-md-6 col-lg-7 p-4">
       <ng-container *ngFor="let category of array.from(categoryMapper.keys())">
         <h4 [id]="category">{{ category }}</h4>
 

@@ -2,7 +2,8 @@
   "projects": {
     "default": "tumdum-delivery-app",
     "Prod": "tumdum-delivery-app",
-    "Production": "tumdum-delivery-app"
+    "Production": "tumdum-delivery-app",
+    "production": "tumdum-delivery-app"
   },
   "targets": {
     "tumdum-delivery-app": {

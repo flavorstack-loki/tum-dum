@@ -1,4 +1,5 @@
 /* Custom Navbar Styles */
+$primary-font: 'Host Grotesk', sans-serif;
 .navbar {
   background-color: #ffffff;
   padding: 1.5rem 4.5rem;
@@ -45,7 +46,7 @@
   margin: 0;
   padding: 0;
   background-color: #ffffff;
-  font-family: Arial, sans-serif;
+  font-family: $primary-font;
 }
 .bestOpSection {
   // display: flex;
@@ -186,7 +187,7 @@
 //Resturant Section
 .resturant_section {
   color: #0c0c0c;
-  font-family: Arial, sans-serif;
+  font-family: $primary-font;
 }
 
 .section-title {
@@ -198,7 +199,7 @@
 .restaurant-card {
   // background-color: #1c1c1c;
   border-radius: 10px;
-  padding: 1rem 1rem 1rem 0;
+  padding: 1rem 1rem 0 0;
   text-align: left;
   color: #1c1c1c;
   // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -214,6 +215,7 @@
 
 .restaurant-name {
   font-weight: bold;
+  font-family: 'Host Grotesk', sans-serif;
   color: #1c1c1c;
   margin-top: 0.8rem;
 }
@@ -351,7 +353,7 @@
 .dish_section {
   background-color: #F5F5F5;
   color: #fff;
-  font-family: Arial, sans-serif;
+  font-family: $primary-font;
 }
 
 .dish_container {
@@ -408,3 +410,64 @@
 //   }
 // }
 
+.padding{
+  padding-top: 60px;
+}
+
+
+//moblle friendly
+.carousel {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.icon-item {
+  text-align: center;
+  width: 100%;
+}
+
+.carousel-img {
+  width: 90px;
+  /* Matches the image size in the picture */
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  /* Centers the image */
+}
+
+.item-text {
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .carousel-img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .item-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .item-text {
+    font-size: 11px;
+  }
+}

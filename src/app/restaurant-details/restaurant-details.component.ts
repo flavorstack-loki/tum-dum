@@ -191,6 +191,6 @@ export class RestaurantDetailsComponent implements OnInit {
     let loginUser: any = sessionStorage.getItem("user");
     let loggedUser = JSON.parse(loginUser);
     this.userId = loggedUser?.uid.toString() || "";
-    // this.userId = "064POlUc9DPGRJLnRK6CkLpTs1u2";
+    // this.userId = "FI1sl8HaEzgn3V5FA4h3RpbMxD63";
   }
 }

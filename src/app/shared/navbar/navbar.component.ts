@@ -267,6 +267,7 @@ export class NavbarComponent implements OnInit {
     });
   }
   onCartClick() {
+    // this.userId = "FI1sl8HaEzgn3V5FA4h3RpbMxD63";
     if (this.userId) {
       this.router.navigate(["/check_out"]);
     } else {

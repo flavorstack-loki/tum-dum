@@ -77,22 +77,22 @@ export class CheckOutComponent implements OnInit {
 
     if (this.isIOS()) {
       // iOS - Use Google Pay Web URL (since iOS doesn’t support `upi://`)
-      // const gpayUrl = `upi://pay?pa=${encodeURIComponent(
-      //   this.upiId
-      // )}&pn=${encodeURIComponent(this.merchantName)}&tr=${encodeURIComponent(
-      //   this.orderId
-      // )}&am=${encodeURIComponent(this.amount)}&cu=INR`;
-      const phonePeDeepLink = `phonepe://pay?pa=${encodeURIComponent(
+      const gpayUrl = `tez://upi/pay?pa=${encodeURIComponent(
         this.upiId
-      )}&pn=${encodeURIComponent(
-        this.merchantName
-      )}&mc=1234&tid=${encodeURIComponent(
+      )}&pn=${encodeURIComponent(this.merchantName)}&tr=${encodeURIComponent(
         this.orderId
-      )}&tr=${encodeURIComponent(
-        this.orderId
-      )}&tn=Payment&am=${encodeURIComponent(this.amount)}&cu=INR`;
+      )}&am=${encodeURIComponent(this.amount)}&cu=INR`;
+      // const phonePeDeepLink = `phonepe://pay?pa=${encodeURIComponent(
+      //   this.upiId
+      // )}&pn=${encodeURIComponent(
+      //   this.merchantName
+      // )}&mc=1234&tid=${encodeURIComponent(
+      //   this.orderId
+      // )}&tr=${encodeURIComponent(
+      //   this.orderId
+      // )}&tn=Payment&am=${encodeURIComponent(this.amount)}&cu=INR`;
 
-      window.location.href = phonePeDeepLink;
+      window.location.href = gpayUrl;
     } else {
       const upiUrl = `upi://pay?pa=${this.upiId}&pn=Merchant+Name&tr=${this.orderId}&tn=${this.transactionNote}&am=${this.amount}&cu=INR`;
       // Android - Use direct `upi://` deep link
@@ -296,5 +296,6 @@ export class CheckOutComponent implements OnInit {
     let loginUser: any = sessionStorage.getItem("user");
     let loggedUser = JSON.parse(loginUser);
     this.userId = loggedUser?.uid.toString() || "";
+    // this.userId = "FI1sl8HaEzgn3V5FA4h3RpbMxD63";
   }
 }
